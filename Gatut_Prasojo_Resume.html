@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gatut Prasojo — Resume</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm 16mm 16mm; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: Arial, Calibri, Helvetica, sans-serif; font-size: 10pt; line-height: 1.45; color: #1a1a1a; }
+  h1 { font-size: 20pt; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 2pt; }
+  .subtitle { font-size: 10pt; color: #444; margin-bottom: 6pt; }
+  .contact { font-size: 8.5pt; color: #333; margin-bottom: 10pt; }
+  .contact a { color: #333; text-decoration: none; }
+  hr { border: none; border-top: 1.5pt solid #B84530; margin: 8pt 0; }
+  h2 { font-size: 9pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #B84530; margin: 10pt 0 5pt 0; border-bottom: 0.5pt solid #ddd; padding-bottom: 3pt; }
+  p, li { font-size: 9.2pt; }
+  p { margin-bottom: 6pt; text-align: justify; }
+  ul { margin: 0 0 6pt 16pt; }
+  li { margin-bottom: 3pt; }
+  .row { display:flex; justify-content:space-between; align-items:baseline; gap:12pt; }
+  .role { font-weight:700; }
+  .period { font-size:8.5pt; color:#666; white-space:nowrap; }
+  .project-title { font-weight:700; font-size:9.2pt; margin-top:6pt; }
+  .project-desc { color:#333; margin-bottom:4pt; }
+  .cols { display:flex; gap:18pt; }
+  .cols > div { flex:1; }
+  .label { font-weight:700; }
+  strong { font-weight:700; }
+</style>
+</head>
+<body>
+
+<h1>Gatut Prasojo</h1>
+<div class="subtitle">Full-Stack Software Engineer — Indonesia (Remote)</div>
+<div class="contact">
+  gatpras@gmail.com &nbsp;|&nbsp; +62 852 3110 0808 &nbsp;|&nbsp; github.com/gutat &nbsp;|&nbsp; linkedin.com/in/gutat &nbsp;|&nbsp; Indonesia — Open to Remote Worldwide
+</div>
+<hr>
+
+<h2>Summary</h2>
+<p>
+Full-stack software engineer based in Indonesia, available remote, with 9+ years of professional experience coding since February 2017. I design, build, and operate end-to-end systems from desktop and web to mobile and cloud infrastructure, owning the full lifecycle from database architecture and backend APIs to frontend interfaces, DevOps, and production operations. Focused on reliable, maintainable software that solves real business problems across Windows, Linux, and Android. Known for strong performance optimization (9/10), practical UX improvements (8/10), thorough debugging (8/10), and clean architecture. Passionate about continuous learning — currently expanding into Rust.
+</p>
+
+<h2>Experience</h2>
+<div class="row">
+  <span class="role">Full-Stack Software Engineer — Enterprise Systems &amp; Product Development</span>
+  <span class="period">Feb 2017 – Present · 9+ years</span>
+</div>
+<p>
+9+ years building and maintaining mission-critical software across desktop, web, and mobile platforms. End-to-end ownership from requirements and system design to database modeling, backend and frontend development, deployment, and long-term maintenance. Built enterprise resource planning modules covering purchasing, inventory, finance, and reporting; real-time messaging platforms; and cloud-native deployments serving daily operational workloads with thousands of active users. Experienced in leading small teams, reviewing code, optimizing legacy systems for performance and reliability, and integrating third-party services and hardware.
+</p>
+
+<h2>Key Projects</h2>
+<div class="project-title">Local AI Troubleshooting Assistant — Python (RAG)</div>
+<div class="project-desc">On-premise AI chat system in Python using Retrieval-Augmented Generation with Qdrant vector search. Answers practical troubleshooting queries such as "how to troubleshoot a printer" by retrieving from internal knowledge bases. Fully local for data privacy with no external API dependency. Includes document ingestion, chunking, Qdrant indexing, and chat interface. Most relevant to AI training and evaluation tasks.</div>
+
+<div class="project-title">Automated Journaling Service — Go</div>
+<div class="project-desc">Backend service in Go that automates journal entries and financial postings. Built for speed and concurrency, handling bulk transaction processing, validation, and reconciliation with minimal resource usage. Runs reliably on Linux with containerized deployment.</div>
+
+<div class="project-title">Enterprise ERP System</div>
+<div class="project-desc">Complete business management suite with Java desktop client, Laravel/AdonisJS web backend, and Flutter mobile app. Modules for purchase, inventory, finance, accounting, and executive reporting. Integrated with MSSQL, MySQL, PostgreSQL, Redis caching, and automated deployments via Docker, Podman, and Nginx on Linux VPS. Continuously optimized for performance and reliability.</div>
+
+<div class="project-title">Social &amp; Real-Time Messaging Platform for Agriculture Community</div>
+<div class="project-desc">Real-time social media and messaging platform for the farming ecosystem with feeds, groups, and WebSocket-powered 1:1 and group chat, presence, and notifications. Flutter mobile client with offline support and UX-focused iterations to improve engagement.</div>
+
+<div class="project-title">Cloud Infrastructure &amp; Rust Backend (In Progress)</div>
+<div class="project-desc">Self-hosted cloud infrastructure on Linux with Docker, Podman, Nginx, and WireGuard VPN. Currently developing a lightweight backend framework in Rust (learning, not yet complete) to explore high-performance, memory-safe services. Customized Odoo Community Edition for ERP workflows.</div>
+
+<div class="project-title">Open Source — github.com/gutat</div>
+<div class="project-desc">odoo_modules — Odoo Community custom modules (odd_invoice, odd_scale, odd_tauri, odd_themes, vue_app) in JavaScript/Python. agrons — Nuxt + Supabase platform (Api/App, Supabase migrations and i18n) with 25 commits.</div>
+
+<h2>Education</h2>
+<p><strong>S1 Teknik Komputer — Universitas Brawijaya, Malang</strong> — Bachelor of Computer Engineering</p>
+
+<h2>Technical Skills</h2>
+<div class="cols">
+  <div>
+    <p><span class="label">Languages:</span> Python, JavaScript, Go, Java, PHP, Rust (learning)</p>
+    <p><span class="label">Backend:</span> Python (RAG), Node.js / AdonisJS, Go (journaling), Java, Laravel, Rust (WIP)</p>
+    <p><span class="label">Mobile &amp; Frontend:</span> Flutter, JavaScript, Android</p>
+    <p><span class="label">Database:</span> MSSQL, MySQL, PostgreSQL, SQLite, Redis, Qdrant</p>
+  </div>
+  <div>
+    <p><span class="label">OS:</span> Windows, Linux, Android</p>
+    <p><span class="label">AI &amp; Real-time:</span> Local AI (RAG), WebSocket</p>
+    <p><span class="label">Infrastructure:</span> Docker, Podman, Nginx, Cloud VPS, WireGuard</p>
+    <p><span class="label">ERP:</span> Odoo Community Edition (custom)</p>
+  </div>
+</div>
+
+<h2>Languages</h2>
+<p>Indonesian — Native (10/10). English — Reading 9/10, Writing 7/10, Listening 8/10, Speaking 6/10; comfortable for remote async work and technical documentation.</p>
+
+</body>
+</html>

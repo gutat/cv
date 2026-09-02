@@ -1,0 +1,535 @@
+/* ============================================
+   RESET
+   ============================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================
+   DESIGN TOKENS
+   Palette: Committed crimson on pure white
+   Seed: oklch(0.544 0.169 31.3)
+   ============================================ */
+:root {
+  /* Color — OKLCH only */
+  --primary: oklch(0.544 0.169 31.3);
+  --primary-hover: oklch(0.470 0.185 31.3);
+  --bg: oklch(1.000 0.000 0);
+  --ink: oklch(0.165 0.010 31.3);
+  --muted: oklch(0.385 0.008 31.3);
+  --rule: oklch(0.870 0.003 31.3);
+  --focus-ring: oklch(0.544 0.169 31.3);
+
+  /* Brand Panel Specifics */
+  --brand-bg: var(--primary);
+  --brand-ink: oklch(1.000 0.000 0); /* white */
+  --brand-muted: rgba(255, 255, 255, 0.75);
+  --brand-rule: rgba(255, 255, 255, 0.2);
+
+  /* Typography */
+  --font: 'Archivo', system-ui, -apple-system, sans-serif;
+
+  /* Type scale */
+  --text-name: clamp(2.5rem, 2rem + 3.5vw, 4.5rem);
+  --text-role: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+  --text-bio: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  --text-body: 1.0625rem;
+  --text-sm: 0.9375rem;
+  --text-project-title: 1.0625rem;
+  --text-heading: 0.8125rem;
+
+  /* Leading */
+  --leading-body: 1.6;
+  --leading-tight: 1.1;
+  --leading-snug: 1.4;
+
+  /* Spacing */
+  --space-page: clamp(1.5rem, 2vw + 2rem, 4rem);
+  --space-xl: clamp(2rem, 2vw + 2.5rem, 4rem);
+  --space-lg: clamp(1.5rem, 1vw + 1.5rem, 2.5rem);
+  --space-md: clamp(1rem, 1vw + 1rem, 1.5rem);
+  --space-sm: 0.75rem;
+  --space-xs: 0.375rem;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-reveal: 1s;
+  --dur-fast: 0.2s;
+}
+
+/* ============================================
+   BASE
+   ============================================ */
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--ink);
+  background-color: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all var(--dur-fast) ease;
+}
+
+a:hover {
+  color: var(--primary);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+strong {
+  font-weight: 700;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ============================================
+   LAYOUT — DUAL PANEL
+   ============================================ */
+.cv-layout {
+  display: flex;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* ============================================
+   LEFT PANEL: BRAND (Fixed on Desktop)
+   ============================================ */
+.panel-brand {
+  flex: 0 0 40%;
+  max-width: 500px;
+  background-color: var(--brand-bg);
+  color: var(--brand-ink);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.brand-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.portrait-wrapper {
+  margin-bottom: var(--space-xl);
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fade-in var(--dur-reveal) var(--ease-out-expo) both;
+}
+
+.portrait-img {
+  width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+  /* Blend nicely with the crimson background */
+  mix-blend-mode: multiply;
+  filter: grayscale(100%) contrast(1.2) brightness(1.1);
+  opacity: 0.9;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.brand-info {
+  flex-shrink: 0;
+  animation: slide-up var(--dur-reveal) var(--ease-out-expo) 0.2s both;
+}
+
+.cv-name {
+  font-size: var(--text-name);
+  font-weight: 900;
+  line-height: var(--leading-tight);
+  color: var(--brand-ink);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.cv-role {
+  font-size: var(--text-role);
+  font-weight: 500;
+  color: var(--brand-muted);
+  margin-top: 0.25em;
+  letter-spacing: -0.01em;
+}
+
+.cv-contact {
+  margin-top: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  font-style: normal;
+  font-size: var(--text-sm);
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+}
+
+.cv-contact a {
+  color: var(--brand-muted);
+  font-weight: 500;
+  position: relative;
+  width: fit-content;
+}
+
+.cv-contact a:hover {
+  color: var(--brand-ink);
+}
+
+.cv-contact-pdf {
+  color: var(--brand-ink) !important;
+  font-weight: 700 !important;
+  border: 1px solid var(--brand-rule);
+  padding: 0.75em 1.25em;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: var(--space-sm);
+}
+
+.cv-contact-pdf:hover {
+  background-color: var(--brand-ink);
+  color: var(--brand-bg) !important;
+  border-color: var(--brand-ink);
+}
+
+/* ============================================
+   RIGHT PANEL: CONTENT (Scrollable)
+   ============================================ */
+.panel-content {
+  flex: 1;
+  background-color: var(--bg);
+  padding: var(--space-page);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: 680px; /* Optimal reading line length */
+  padding-block: var(--space-lg);
+  animation: slide-up-subtle var(--dur-reveal) var(--ease-out-expo) 0.3s both;
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+.cv-section {
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--rule);
+}
+
+.cv-section:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+/* Confident, compact headings */
+.cv-heading {
+  font-size: var(--text-heading);
+  font-weight: 800;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+}
+
+/* Decorative dash before heading */
+.cv-heading::before {
+  content: '';
+  display: block;
+  width: 1.5em;
+  height: 2px;
+  background-color: var(--primary);
+}
+
+/* ============================================
+   BIO
+   ============================================ */
+.cv-section--hero {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.cv-bio {
+  font-size: var(--text-bio);
+  line-height: var(--leading-snug);
+  font-weight: 500;
+  color: var(--ink);
+  text-wrap: pretty;
+  max-width: 38ch;
+}
+
+/* ============================================
+   EXPERIENCE
+   ============================================ */
+.cv-experience {
+  display: flex;
+  flex-direction: column;
+}
+
+.cv-company {
+  font-size: var(--text-body);
+  font-weight: 700;
+  line-height: var(--leading-snug);
+}
+
+.cv-position {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  margin-top: 0.25em;
+}
+
+.cv-period {
+  font-size: var(--text-sm);
+  color: var(--primary);
+  font-weight: 600;
+  margin-top: 0.25em;
+  font-variant-numeric: tabular-nums;
+}
+
+.cv-exp-desc {
+  font-size: var(--text-body);
+  color: var(--ink);
+  margin-top: var(--space-md);
+  text-wrap: pretty;
+}
+
+/* ============================================
+   PROJECTS
+   ============================================ */
+.cv-project {
+  margin-bottom: var(--space-lg);
+}
+
+.cv-project:last-child {
+  margin-bottom: 0;
+}
+
+.cv-project-title {
+  font-size: var(--text-project-title);
+  font-weight: 700;
+  line-height: var(--leading-snug);
+  margin-bottom: 0.35em;
+}
+
+.cv-project-desc {
+  font-size: var(--text-body);
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+/* ============================================
+   TECH STACK
+   ============================================ */
+.cv-stack {
+  display: grid;
+  grid-template-columns: minmax(120px, auto) 1fr;
+  gap: 1em 2em;
+  align-items: baseline;
+}
+
+.cv-stack-row {
+  display: contents;
+}
+
+.cv-stack dt {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.cv-stack dd {
+  font-size: var(--text-body);
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up-subtle {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
+  .cv-layout {
+    flex-direction: column;
+  }
+
+  .panel-brand {
+    flex: none;
+    max-width: none;
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: var(--space-page);
+    min-height: 80vh;
+  }
+
+  .portrait-wrapper {
+    margin-bottom: var(--space-page);
+  }
+
+  .cv-contact {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .contact-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75em 1.5em;
+  }
+
+  .cv-contact-pdf {
+    margin-top: 0;
+  }
+
+  .panel-content {
+    padding: var(--space-page);
+  }
+}
+
+@media (max-width: 600px) {
+  .cv-stack {
+    grid-template-columns: 1fr;
+    gap: 0.25em;
+  }
+
+  .cv-stack-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125em;
+    margin-bottom: 1em;
+  }
+
+  .cv-stack-row:last-child {
+    margin-bottom: 0;
+  }
+  
+  .cv-contact {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .cv-contact-pdf {
+    margin-top: var(--space-md);
+  }
+}
+
+/* ============================================
+   PRINT
+   ============================================ */
+@media print {
+  body { font-size: 10pt; color: black; background: white; }
+  .cv-layout { display: block; }
+  .panel-brand { 
+    position: static; 
+    height: auto; 
+    padding: 0; 
+    background: transparent; 
+    color: black;
+    margin-bottom: 2rem;
+    border-bottom: 3px solid black;
+    padding-bottom: 1rem;
+  }
+  .portrait-wrapper { display: none; }
+  .panel-brand .cv-name { color: black; font-size: 24pt; }
+  .panel-brand .cv-role { color: #444; }
+  .panel-brand .cv-contact a { color: #444; }
+  .contact-links { flex-direction: row; gap: 1rem; }
+  .cv-contact-pdf { display: none; }
+  .panel-content { padding: 0; }
+  .cv-section { border-bottom: 1px solid #ccc; padding-bottom: 1rem; margin-bottom: 1rem; }
+  .cv-heading::before { background-color: black; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
